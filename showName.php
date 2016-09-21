@@ -25,30 +25,31 @@
     $result = mysqli_query($conn, $sql);
 
     // Maak de header van de tabel
-    echo "<table>
-            <tr>
-                <th>id</th>
-                <th>firstname</th>
-                <th>infix</th>
-                <th>lastname</th>
-                <th></th>
-            </tr>";
-            // Vul de tabel met records....
-            while ( $record = mysqli_fetch_array($result, MYSQLI_ASSOC) )
-            {      
-                    echo "<tr>
-                                <td>".$record['id']."</td>
-                                <td>".$record['firstname']."</td>
-                                <td>".$record['infix']."</td>
-                                <td>".$record['lastname']."</td> 
-                                <td>
-                                    <a href='   remove.php?id=".$record['id']."'>
-                                        <img src='images/drop.png' alt='kruis'>
-                                    </a>
-                                </td>          
-                        </tr>";
-            } 
-    echo "</table>";
+    $table = "";    
+    $table .= "<table>
+                <tr>
+                    <th>id</th>
+                    <th>firstname</th>
+                    <th>infix</th>
+                    <th>lastname</th>
+                    <th></th>
+                </tr>";
+                // Vul de tabel met records....
+                while ( $record = mysqli_fetch_array($result, MYSQLI_ASSOC) )
+                {      
+                        $table .= "<tr>
+                                        <td>".$record['id']."</td>
+                                        <td>".$record['firstname']."</td>
+                                        <td>".$record['infix']."</td>
+                                        <td>".$record['lastname']."</td> 
+                                        <td>
+                                            <a href='   remove.php?id=".$record['id']."'>
+                                                <img src='images/drop.png' alt='kruis'>
+                                            </a>
+                                        </td>          
+                                   </tr>";
+                } 
+    $table .= "</table>";
 ?>
 <!DOCTYPE html>
 <html>
@@ -57,6 +58,8 @@
         <link rel='stylesheet' type='text/css' href='css/style.css'>
     </head>
     <body>
-
+        <?php 
+            echo $table;
+        ?>
     </body>
 </html>
