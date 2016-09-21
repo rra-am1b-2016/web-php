@@ -145,7 +145,11 @@
                         <td>".$record['firstname']."</td>
                         <td>".$record['infix']."</td>
                         <td>".$record['lastname']."</td> 
-                        <td><a href='remove.php?id=".$record['id']."'><img src='images/drop.png' alt='kruis'></a></td>          
+                        <td>
+                            <a href='   remove.php?id=".$record['id']."'>
+                                <img src='images/drop.png' alt='kruis'>
+                            </a>
+                        </td>          
                   <tr>";
      } 
      echo "</table>";
