@@ -1,8 +1,14 @@
 <?php
-    echo "We hebben github.com/rra-am1b-2016/web-php in gebruik genomen als repo";
-    var_dump($_GET);
+    echo "Het record met id=".$_GET["id"]." is succesvol verwijderd!";
+    //var_dump($_GET);
 
-    $servername = "localhost";
+    include("connect_db.php");
+    
+    $sql = "DELETE FROM `users` WHERE `id` = '".$_GET["id"]."'";
 
-    $sql = "DELETE FROM `users` WHERE `id` = 52";
+    //echo $sql;
+
+    mysqli_query($conn, $sql);
+
+    header("refresh: 3; url=showName.php");
 ?>
