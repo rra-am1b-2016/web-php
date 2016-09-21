@@ -10,5 +10,5 @@
 
     mysqli_query($conn, $sql);
 
-    header("refresh: 3; url=showName.php");
+    header("location: showName.php");
 ?>

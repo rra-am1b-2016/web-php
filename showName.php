@@ -93,17 +93,19 @@
     /************************************************************************************
      * Het invoegen van een record in de tabel
      */
-
-    $sql = "INSERT INTO `users` (`id`,
-                                 `firstname`,
-                                 `infix`,
-                                 `lastname`)
-            VALUES              (NULL,
-                                 '".$_POST["firstname"]."',
-                                 '".$_POST["infix"]."',
-                                 '".$_POST["lastname"]."')";    
-    
-    mysqli_query($conn, $sql);
+     if ( !empty($_POST))
+     {
+        $sql = "INSERT INTO `users` (`id`,
+                                    `firstname`,
+                                    `infix`,
+                                    `lastname`)
+                VALUES              (NULL,
+                                    '".$_POST["firstname"]."',
+                                    '".$_POST["infix"]."',
+                                    '".$_POST["lastname"]."')";    
+        
+        mysqli_query($conn, $sql);
+     }
     /*************************************************************************************/
     
     /**************************************************************************************
@@ -168,33 +170,34 @@
 
 
 
-
-    echo "Uw volledige naam is: ".$_POST["firstname"]." ".$_POST["infix"]." ".$_POST["lastname"]."<br>";
-    echo "Uw wachtwoord is: ".$_POST["password"]."<br>";
-    echo "Uw e-mailadres is: ".$_POST['email']."<br>";
-    echo "Uw favoriete games zijn: ";
-    
-    if ( isset($_POST["favouriteGames"]["Tomb raider"]) == 1)
+    if ( !empty($_POST))
     {
-        echo $_POST["favouriteGames"]["Tomb raider"]." ";
+        echo "Uw volledige naam is: ".$_POST["firstname"]." ".$_POST["infix"]." ".$_POST["lastname"]."<br>";
+        echo "Uw wachtwoord is: ".$_POST["password"]."<br>";
+        echo "Uw e-mailadres is: ".$_POST['email']."<br>";
+        echo "Uw favoriete games zijn: ";
+        
+        if ( isset($_POST["favouriteGames"]["Tomb raider"]) == 1)
+        {
+            echo $_POST["favouriteGames"]["Tomb raider"]." ";
+        }
+        if ( isset($_POST["favouriteGames"]["Pac Man"]) == 1)
+        {
+            echo $_POST["favouriteGames"]["Pac Man"]." ";
+        }
+        if ( isset($_POST["favouriteGames"]["Donkey Kong"]) == 1)
+        {
+            echo $_POST["favouriteGames"]["Donkey Kong"]." ";
+        }
+        if ( isset($_POST["favouriteGames"]["Assassins Creed"]) == 1)
+        {
+            echo $_POST["favouriteGames"]["Assassins Creed"]." ";
+        }
+        if ( isset($_POST["favouriteGames"]["Kings Valley"]) == 1)
+        {
+            echo $_POST["favouriteGames"]["Kings Valley"]." ";
+        }
     }
-    if ( isset($_POST["favouriteGames"]["Pac Man"]) == 1)
-    {
-        echo $_POST["favouriteGames"]["Pac Man"]." ";
-    }
-    if ( isset($_POST["favouriteGames"]["Donkey Kong"]) == 1)
-    {
-        echo $_POST["favouriteGames"]["Donkey Kong"]." ";
-    }
-    if ( isset($_POST["favouriteGames"]["Assassins Creed"]) == 1)
-    {
-        echo $_POST["favouriteGames"]["Assassins Creed"]." ";
-    }
-    if ( isset($_POST["favouriteGames"]["Kings Valley"]) == 1)
-    {
-        echo $_POST["favouriteGames"]["Kings Valley"]." ";
-    }
-       
     //var_dump($_POST);
     //var_dump($_SERVER);
     echo "<h4>Uw gegevens zijn succesvol opgeslagen in de database.</h4>";
