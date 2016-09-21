@@ -1,0 +1,13 @@
+*
+{
+    font-family: Verdana, Arial;
+    margin: 0;
+    padding: 0;
+}
+
+table, td, th 
+{
+    border:2px solid grey;
+    border-collapse: collapse;
+    padding: 0.4em 1em;
+}
