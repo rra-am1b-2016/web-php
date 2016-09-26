@@ -1,0 +1,41 @@
+/* Dit is CS commentaar */
+td
+{
+    border: 2px solid grey;
+    padding: 0.2em 1em; 
+}
+
+table
+{
+    margin: 5em 4em;
+}
+
+#tbl_1
+{
+    border: 1px solid rgb(160, 160, 160);
+    background-color: rgb(200,200,200);
+    color: rgb(255, 255, 255);
+    border-collapse: collapse;
+    
+}
+
+body
+{
+    font-family: Verdana, Arial;
+    font-size: 1.2em;
+}
+
+.bold
+{
+    font-weight: bold;
+}
+
+input
+{
+    font-size: 1em;
+    color: rgb(255,255,255);
+    background-color: rgb(200, 200, 200);
+    padding: 0.5em;
+    border: 0px solid rgb(0,0,0);
+    /*margin: 2em;*/
+}

@@ -33,6 +33,7 @@
                     <th>infix</th>
                     <th>lastname</th>
                     <th></th>
+                    <th></th>
                 </tr>";
                 // Vul de tabel met records....
                 while ( $record = mysqli_fetch_array($result, MYSQLI_ASSOC) )
@@ -43,10 +44,15 @@
                                         <td>".$record['infix']."</td>
                                         <td>".$record['lastname']."</td> 
                                         <td>
-                                            <a href='   remove.php?id=".$record['id']."'>
+                                            <a href='remove.php?id=".$record['id']."'>
                                                 <img src='images/drop.png' alt='kruis'>
                                             </a>
-                                        </td>          
+                                        </td> 
+                                        <td>
+                                            <a href='update.php?id=".$record['id']."'>
+                                                <img src='./images/edit.png' alt='update,potlood,enz..'>
+                                            </a>
+                                        </td>         
                                    </tr>";
                 } 
     $table .= "</table>";
@@ -61,5 +67,7 @@
         <?php 
             echo $table;
         ?>
+        Klik <a href='index.html'>hier</a> voor teruggaan naar formulier
+
     </body>
 </html>
