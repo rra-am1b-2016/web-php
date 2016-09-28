@@ -5,16 +5,30 @@
     // Check of het $_POST array niet leeg is
     if ( !empty($_POST))
     {
+        function sanatize($text)
+        {
+            $text = trim($text);
+            $text = strip_tags($text);
+            $text = addslashes($text);
+            return $text;
+        }        
+        
+        $firstname = sanatize($_POST['firstname']);
+        $infix = sanatize($_POST['infix']);
+        $lastname = sanatize($_POST['lastname']);   
+
+
        // Maak een INSERT query en ....
        $sql = "INSERT INTO `users` (`id`,
                                     `firstname`,
                                     `infix`,
                                     `lastname`)
                 VALUES              (NULL,
-                                    '".$_POST["firstname"]."',
-                                    '".$_POST["infix"]."',
-                                    '".$_POST["lastname"]."')";    
+                                    '".$firstname."',
+                                    '".$infix."',
+                                    '".$lastname."')";    
         // verstuur deze naar de database.
+        echo $sql;
         mysqli_query($conn, $sql);
     }
     
@@ -26,7 +40,7 @@
 
     // Maak de header van de tabel
     $table = "";    
-    $table .= "<table>
+    $table .= "<table id='tbl_1'>
                 <tr>
                     <th>id</th>
                     <th>firstname</th>
@@ -56,18 +70,20 @@
                                    </tr>";
                 } 
     $table .= "</table>";
+
 ?>
 <!DOCTYPE html>
 <html>
     <head>
         <title>userinfo</title>
         <link rel='stylesheet' type='text/css' href='css/style.css'>
+        <link rel='stylesheet' type='text/css' href='css/style_index.css'>
     </head>
     <body>
         <?php 
             echo $table;
         ?>
         Klik <a href='index.html'>hier</a> voor teruggaan naar formulier
-
+        
     </body>
 </html>

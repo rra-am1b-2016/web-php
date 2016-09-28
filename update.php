@@ -7,12 +7,16 @@
      var_dump($_POST);
      // Maak een update query..
      $sql = "UPDATE `users` 
-             SET `firstname` = 'sdfkl1',
-                 `infix` = 'jsdkfj2',
-                 `lastname` = 'skdljj3'
+             SET `firstname` = '".$_POST['firstname']."',
+                 `infix` = '".$_POST['infix']."',
+                 `lastname` = '".$_POST['lastname']."'
              WHERE `id` = ".$_POST['id'].";";
-    echo $sql;
-    mysqli_query();
+    
+    // Verstuur de query naar de databases via de verbinding in $conn
+    mysqli_query($conn, $sql);
+
+    // Je wordt automatisch doorgestuurd naar de pagina showName.php
+    header("location: showName.php");
  }
  else
  {
@@ -41,11 +45,12 @@
     <head>
         <title></title>
         <link rel='stylesheet' style='text/css' href='./css/style.css'>
+        <link rel='stylesheet' style='text/css' href='./css/style_index.css'>
     </head>
     <body>
         <h3>Wijzig de onderstaande gegevens</h3>
         <form action='update.php' method='post'>
-            <table>
+            <table id='tbl_1'>
                 <tr>
                     <td>id:</td>
                     <td><input type='number' name='id' value='<?php echo $record["id"]; ?>' readonly></td>
