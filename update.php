@@ -1,16 +1,23 @@
 <?php
  // Maak contact met de mysql-server en database
  include("connect_db.php");
+ include("functions.php");
 
  if ( isset($_POST['submit']))
  {
      var_dump($_POST);
+
+     $id = sanatize($_POST['id']);
+     $firstname = sanatize($_POST['firstname']);
+     $infix = sanatize($_POST['infix']);
+     $lastname = sanatize($_POST['lastname']);
+
      // Maak een update query..
      $sql = "UPDATE `users` 
-             SET `firstname` = '".$_POST['firstname']."',
-                 `infix` = '".$_POST['infix']."',
-                 `lastname` = '".$_POST['lastname']."'
-             WHERE `id` = ".$_POST['id'].";";
+             SET `firstname` = '".$firstname."',
+                 `infix` = '".$infix."',
+                 `lastname` = '".$lastname."'
+             WHERE `id` = ".$id.";";
     
     // Verstuur de query naar de databases via de verbinding in $conn
     mysqli_query($conn, $sql);
