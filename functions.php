@@ -1,5 +1,5 @@
 <?php
-    function sanatize($text)
+    function sanitize($text)
     {
         $text = trim($text);
         $text = strip_tags($text);

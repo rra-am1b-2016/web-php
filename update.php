@@ -45,11 +45,9 @@
  $firstname = htmlentities($record["firstname"], ENT_QUOTES);
  $infix = htmlentities($record["infix"], ENT_QUOTES);
  $lastname = htmlentities($record["lastname"], ENT_QUOTES);
+ $password = htmlentities($record["password"], ENT_QUOTES);
 
- // Kijk maar....
- //var_dump($record);
- //echo $sql; exit();
-
+ 
 ?>
 
 <!DOCTYPE html>
@@ -78,6 +76,10 @@
                 <tr>
                     <td>achternaam:</td>
                     <td><input type='text' name='lastname' value='<?php echo $lastname; ?>'></td>
+                </tr>
+                <tr>
+                    <td>wachtwoord:</td>
+                    <td><input type='password' name='password' value='<?php echo $password; ?>'></td>
                 </tr>
                 <tr>
                     <td></td>
