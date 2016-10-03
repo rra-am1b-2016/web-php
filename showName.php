@@ -4,10 +4,18 @@
     include("functions.php");
     
     // Check of het $_POST array niet leeg is
+    
+
     if ( !empty($_POST))
     {
-        var_dump($_POST["favouriteGames"]);
-        echo $_POST["favouriteGames"]["Tomb raider"];
+        if (!isset($_POST["favouriteGames"]))
+        {
+            header("refresh:4; url=index.html");
+            echo "U bent verplicht minimaal een game te selecteren als favoriet";
+            exit();
+        }
+        //var_dump($_POST["favouriteGames"]);
+        //echo $_POST["favouriteGames"]["Tomb raider"];
 
         $favouriteGames = serialize($_POST["favouriteGames"]);
         
@@ -34,7 +42,7 @@
                                     '".$password."',
                                     '".$favouriteGames."')";    
         // verstuur deze naar de database.
-        echo $sql;
+        //echo $sql;
 
         mysqli_query($conn, $sql);
         
@@ -62,8 +70,9 @@
                 // Vul de tabel met records....
                 while ( $record = mysqli_fetch_array($result, MYSQLI_ASSOC) )
                 {      
-                        var_dump($record["favouriteGames"]);
+                        //var_dump($record["favouriteGames"]);
                         $favouriteGames = unserialize($record["favouriteGames"]);
+                        //var_dump($favouriteGames);
                         $favouriteGames = implode(", ", $favouriteGames);
                         
                         $table .= "<tr>

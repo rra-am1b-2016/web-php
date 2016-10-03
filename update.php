@@ -7,16 +7,20 @@
  {
      var_dump($_POST);
 
-     $id = sanatize($_POST['id']);
-     $firstname = sanatize($_POST['firstname']);
-     $infix = sanatize($_POST['infix']);
-     $lastname = sanatize($_POST['lastname']);
+     $id = sanitize($_POST['id']);
+     $firstname = sanitize($_POST['firstname']);
+     $infix = sanitize($_POST['infix']);
+     $lastname = sanitize($_POST['lastname']);
+     $password = sanitize($_POST['password']);
 
+     $favouriteGames = serialize($_POST["favouriteGames"]);
      // Maak een update query..
      $sql = "UPDATE `users` 
              SET `firstname` = '".$firstname."',
                  `infix` = '".$infix."',
-                 `lastname` = '".$lastname."'
+                 `lastname` = '".$lastname."',
+                 `password` = '".$password."',
+                 `favouriteGames` = '".$favouriteGames."'
              WHERE `id` = ".$id.";";
     
     // Verstuur de query naar de databases via de verbinding in $conn
@@ -47,9 +51,9 @@
  $lastname = htmlentities($record["lastname"], ENT_QUOTES);
  $password = htmlentities($record["password"], ENT_QUOTES);
 
- var_dump($record["favouriteGames"]);
+ //var_dump($record["favouriteGames"]);
  $favouriteGames = unserialize($record["favouriteGames"]);
- var_dump($favouriteGames);
+ //var_dump($favouriteGames);
  
 ?>
 
@@ -89,7 +93,7 @@
                     <td>
                         <input type="checkbox" name="favouriteGames[Tomb raider]" value="Tomb Raider" <?php if (isset($favouriteGames["Tomb raider"])) { echo 'checked'; } ?>> Tomb Raider<br>
                         <input type="checkbox" name="favouriteGames[Pac Man]" value="Pac Man" <?php if (isset($favouriteGames["Pac Man"])) { echo 'checked'; } ?>>Pac Man<br>
-                  
+            
                         <input type="checkbox" name="favouriteGames[Donkey Kong]" value="Donkey Kong" <?php if (isset($favouriteGames["Donkey Kong"])) { echo 'checked'; } ?>>Donkey Kong<br>
                         <input type="checkbox" name="favouriteGames[Assassins Creed]" value="Assassins Creed" <?php if (isset($favouriteGames["Assassins Creed"])) { echo 'checked'; } ?>>Assassins Creed<br>
                         <input type="checkbox" name="favouriteGames[Kings Valley]" value="Kings Valley" <?php if (isset($favouriteGames["Kings Valley"])) { echo 'checked'; } ?>>Kings Valley
