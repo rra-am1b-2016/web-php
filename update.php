@@ -41,7 +41,10 @@
  // Met de onderstaande functie kunnen we een resource omzetten naar een array (associatief)
  $record = mysqli_fetch_array($result, MYSQLI_ASSOC);
 
+ $id = htmlentities($record["id"], ENT_QUOTES);
+ $firstname = htmlentities($record["firstname"], ENT_QUOTES);
  $infix = htmlentities($record["infix"], ENT_QUOTES);
+ $lastname = htmlentities($record["lastname"], ENT_QUOTES);
 
  // Kijk maar....
  //var_dump($record);
@@ -62,19 +65,19 @@
             <table id='tbl_1'>
                 <tr>
                     <td>id:</td>
-                    <td><input type='number' name='id' value='<?php echo $record["id"]; ?>' readonly></td>
+                    <td><input type='number' name='id' value='<?php echo $id; ?>' readonly></td>
                 </tr>
                 <tr>
                     <td>voornaam:</td>
-                    <td><input type='text' name='firstname' value='<?php echo $record["firstname"]; ?>'></td>
+                    <td><input type='text' name='firstname' value='<?php echo $firstname; ?>'></td>
                 </tr>
-                <tr>
+                <tr>s
                     <td>tussenvoegsel:</td>
                     <td><input type='text' name='infix' value='<?php echo $infix; ?>'></td>
                 </tr>
                 <tr>
                     <td>achternaam:</td>
-                    <td><input type='text' name='lastname' value='<?php echo $record["lastname"]; ?>'></td>
+                    <td><input type='text' name='lastname' value='<?php echo $lastname; ?>'></td>
                 </tr>
                 <tr>
                     <td></td>
