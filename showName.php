@@ -9,14 +9,17 @@
         var_dump($_POST["favouriteGames"]);
         echo $_POST["favouriteGames"]["Tomb raider"];
 
-        $favouriteGames = implode(", ", $_POST["favouriteGames"]);
+        $favouriteGames = serialize($_POST["favouriteGames"]);
+        
 
         $firstname = sanitize($_POST['firstname']);
         $infix = sanitize($_POST['infix']);
         $lastname = sanitize($_POST['lastname']);   
         $password = sanitize($_POST['password']);
-        $favouriteGames = sanitize($favouriteGames);
-
+       
+        
+        
+       
        // Maak een INSERT query en ....
        $sql = "INSERT INTO `users` (`id`,
                                     `firstname`,
@@ -32,7 +35,9 @@
                                     '".$favouriteGames."')";    
         // verstuur deze naar de database.
         echo $sql;
+
         mysqli_query($conn, $sql);
+        
     }
     
     // Maak een SELECT query voor het opvragen van alle records uit de tabel users
@@ -50,20 +55,24 @@
                     <th>infix</th>
                     <th>lastname</th>
                     <th>password</th>
-                    <th>favouriteGames</th>
+                    <th>favourite Games</th>
                     <th></th>
                     <th></th>
                 </tr>";
                 // Vul de tabel met records....
                 while ( $record = mysqli_fetch_array($result, MYSQLI_ASSOC) )
                 {      
+                        var_dump($record["favouriteGames"]);
+                        $favouriteGames = unserialize($record["favouriteGames"]);
+                        $favouriteGames = implode(", ", $favouriteGames);
+                        
                         $table .= "<tr>
                                         <td>".$record['id']."</td>
                                         <td>".$record['firstname']."</td>
                                         <td>".$record['infix']."</td>
                                         <td>".$record['lastname']."</td> 
                                         <td>".$record['password']."</td>
-                                        <td>".$record['favouriteGames']."</td> 
+                                        <td>".$favouriteGames."</td> 
                                         <td>
                                             <a href='remove.php?id=".$record['id']."'>
                                                 <img src='images/drop.png' alt='kruis'>
