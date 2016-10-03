@@ -1,18 +1,11 @@
 <?php  
     // Maak contact met de databaseserver en database
     include("connect_db.php");
+    include("functions.php");
     
     // Check of het $_POST array niet leeg is
     if ( !empty($_POST))
     {
-        function sanatize($text)
-        {
-            $text = trim($text);
-            $text = strip_tags($text);
-            $text = addslashes($text);
-            return $text;
-        }        
-        
         $firstname = sanatize($_POST['firstname']);
         $infix = sanatize($_POST['infix']);
         $lastname = sanatize($_POST['lastname']);   

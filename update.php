@@ -41,6 +41,8 @@
  // Met de onderstaande functie kunnen we een resource omzetten naar een array (associatief)
  $record = mysqli_fetch_array($result, MYSQLI_ASSOC);
 
+ $infix = htmlentities($record["infix"], ENT_QUOTES);
+
  // Kijk maar....
  //var_dump($record);
  //echo $sql; exit();
@@ -68,7 +70,7 @@
                 </tr>
                 <tr>
                     <td>tussenvoegsel:</td>
-                    <td><input type='text' name='infix' value='<?php echo $record["infix"]; ?>'></td>
+                    <td><input type='text' name='infix' value='<?php echo $infix; ?>'></td>
                 </tr>
                 <tr>
                     <td>achternaam:</td>
