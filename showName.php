@@ -11,7 +11,7 @@
         if (!isset($_POST["favouriteGames"]))
         {
             header("refresh:4; url=index.html");
-            echo "U bent verplicht minimaal een game te selecteren als favoriet";
+            echo "<h3>U bent verplicht minimaal &eacute;&eacute;n game te selecteren als favoriet</h3>";
             exit();
         }
         //var_dump($_POST["favouriteGames"]);
@@ -59,11 +59,11 @@
     $table .= "<table id='tbl_1'>
                 <tr>
                     <th>id</th>
-                    <th>firstname</th>
-                    <th>infix</th>
-                    <th>lastname</th>
-                    <th>password</th>
-                    <th>favourite Games</th>
+                    <th>voornaam</th>
+                    <th>tussenvoegsel</th>
+                    <th>achternaam</th>
+                    <th>wachtwoord</th>
+                    <th>favoriete games</th>
                     <th></th>
                     <th></th>
                 </tr>";
@@ -80,7 +80,7 @@
                                         <td>".$record['firstname']."</td>
                                         <td>".$record['infix']."</td>
                                         <td>".$record['lastname']."</td> 
-                                        <td>".$record['password']."</td>
+                                        <td><input type='password' value='".$record['password']."' readonly></td>
                                         <td>".$favouriteGames."</td> 
                                         <td>
                                             <a href='remove.php?id=".$record['id']."'>
@@ -100,15 +100,18 @@
 <!DOCTYPE html>
 <html>
     <head>
-        <title>userinfo</title>
+        <title>Gebruikersgegevens</title>
         <link rel='stylesheet' type='text/css' href='css/style.css'>
         <link rel='stylesheet' type='text/css' href='css/style_index.css'>
     </head>
     <body>
+        <h2>Gebruikersgegevens:</h2>
+        <hr>
         <?php 
             echo $table;
         ?>
-        Klik <a href='index.html'>hier</a> voor teruggaan naar formulier
-        
+        <p>
+            <a href='index.html'>Terug</a> naar formulier 
+        </p>       
     </body>
 </html>

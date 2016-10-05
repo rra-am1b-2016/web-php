@@ -1,20 +1,24 @@
 <?php
  // Maak contact met de mysql-server en database
  include("connect_db.php");
+
+ // Include de sanitize() function en maak deze daarmee beschikbaar op de pagina
  include("functions.php");
 
+ // Check of er op de submit knop is gedrukt
  if ( isset($_POST['submit']))
  {
-     var_dump($_POST);
-
+     // Maak de invoer uit het formulier veilig met de functie sanitize()
      $id = sanitize($_POST['id']);
      $firstname = sanitize($_POST['firstname']);
      $infix = sanitize($_POST['infix']);
      $lastname = sanitize($_POST['lastname']);
      $password = sanitize($_POST['password']);
 
+     // Maak van het associatieve array $_POST["favouriteGames"] een string met serialize().
      $favouriteGames = serialize($_POST["favouriteGames"]);
-     // Maak een update query..
+     
+     // Maak de update-query voor het te wijzigen record.
      $sql = "UPDATE `users` 
              SET `firstname` = '".$firstname."',
                  `infix` = '".$infix."',
@@ -31,41 +35,42 @@
  }
  else
  {
-     
+ // Als er niet op de submit knop is gedrukt ga je het volgende doen... 
  // Maak een SELECT query om het record te selecteren
  $sql = "SELECT * FROM `users` WHERE `id` = '".$_GET["id"]."'";
 
  // Vuur de query af op de database..
  $result = mysqli_query($conn,$sql);
 
- // $result is van het type resource. 
- //Dit datatype is niet zomaar uit te lezen en te gebruiken. Kijk maar
- //var_dump($result);
+ /* $result is van het type resource. 
+    Dit datatype is niet zomaar uit te lezen en te gebruiken. Kijk maar
+    var_dump($result); */
 
  // Met de onderstaande functie kunnen we een resource omzetten naar een array (associatief)
  $record = mysqli_fetch_array($result, MYSQLI_ASSOC);
 
+ // Zet tekens die letterlijk moeten worden afgebeeld om naar htmlentities
  $id = htmlentities($record["id"], ENT_QUOTES);
  $firstname = htmlentities($record["firstname"], ENT_QUOTES);
  $infix = htmlentities($record["infix"], ENT_QUOTES);
  $lastname = htmlentities($record["lastname"], ENT_QUOTES);
  $password = htmlentities($record["password"], ENT_QUOTES);
 
- //var_dump($record["favouriteGames"]);
+ // Zet de string uit de database weer om naar een associetief-array
  $favouriteGames = unserialize($record["favouriteGames"]);
- //var_dump($favouriteGames);
- 
 ?>
 
 <!DOCTYPE html>
 <html>
     <head>
-        <title></title>
+        <title>Wijzig gegevens</title>
         <link rel='stylesheet' style='text/css' href='./css/style.css'>
         <link rel='stylesheet' style='text/css' href='./css/style_index.css'>
     </head>
     <body>
-        <h3>Wijzig de onderstaande gegevens</h3>
+        
+        <h2>Wijzig de onderstaande gegevens</h2>
+        <hr>
         <form action='update.php' method='post'>
             <table id='tbl_1'>
                 <tr>
@@ -76,7 +81,7 @@
                     <td>voornaam:</td>
                     <td><input type='text' name='firstname' value='<?php echo $firstname; ?>'></td>
                 </tr>
-                <tr>s
+                <tr>
                     <td>tussenvoegsel:</td>
                     <td><input type='text' name='infix' value='<?php echo $infix; ?>'></td>
                 </tr>
@@ -105,6 +110,9 @@
                 </tr>
             </table>
         </form>
+        <p>
+            <a href='index.html'>Terug</a> naar formulier 
+        </p>
     </body>
 </html>
 

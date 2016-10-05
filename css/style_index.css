@@ -1,5 +1,5 @@
 /* Dit is CS commentaar */
-td
+td, th
 {
     border: 2px solid grey;
     padding: 0.2em 1em; 
@@ -35,7 +35,7 @@ input
     font-size: 1em;
     color: rgb(255,255,255);
     background-color: rgb(200, 200, 200);
-    padding: 0.5em;
+    padding: 0.2em;
     border: 0px solid rgb(0,0,0);
     /*margin: 2em;*/
 }
@@ -43,4 +43,6 @@ input
 input[type=submit], input[type=reset]
 {
     border: 1px solid black;
+    background-color: darkgrey;
+    padding: 0.4em;
 }

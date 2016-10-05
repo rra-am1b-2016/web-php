@@ -1,18 +1,16 @@
 <!DOCTYPE html>
 <html>
     <head>
-        <title>Page Title</title>
+        <title>Invoer gegevens</title>
+        <link rel='stylesheet' style='text/css' href='./css/style.css'>
         <link rel='stylesheet' style='text/css' href='./css/style_index.css'>
     </head>
     <body>
-        <h1>Les 1 HTML Forms</h1>
-        <p>Mijn eerste webformulier</p>
-        <p>Dit is mijn eerste HTML 5 pagina.<br>
-           Ik ga hieronder een formulier maken waarin ik 
-           mijn voornaam tussenvoegsel en achternaam kan invullen
-           <hr>
+        <h2>Vul hieronder uw gegevens in:</h2>
+        
+        <hr>
            
-        <form action="showName.php" method="post">
+        <form action="showName.php" method="post" autocomplete="off" onfocus='console.log(this)'>
            <table id="tbl_1"> 
                 <tr>
                     <td class="bold">Voornaam:</td>
@@ -24,11 +22,11 @@
                 </tr>
                 <tr>
                     <td class="bold">Achternaam:</td>
-                    <td><input type="text" name="lastname"></td>
+                    <td><input type="text" name="lastname" value=" "></td>
                 </tr>
                 <tr>
                     <td class="bold">wachtwoord</td>
-                    <td><input type="password" name="password" required></td>
+                    <td><input type="password" name="password"  required></td>
                 </tr>
                 <tr>
                     <td class="bold">e-mail</td>
@@ -54,6 +52,8 @@
            </table> 
            <input type="hidden" value="192.168.5.1" name="ip-address">
         </form>
-        Klik <a href='showName.php'>hier</a> voor de records
+    <p>
+        <a href='showName.php'>Toon</a> gegevens
+    </p>
     </body>
 </html>
